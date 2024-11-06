@@ -1,0 +1,9 @@
+# ninja log v6
+6	193	7526216006159185	CMakeFiles/headers.dir/ALU.cpp.obj	eaa5871a6201bead
+16	849	7526216006252552	CMakeFiles/headers.dir/CU.cpp.obj	a834915f7582647e
+12	1032	7526216006208092	CMakeFiles/headers.dir/CPU.cpp.obj	221e9f4cab98ca0d
+194	1099	7526216008038211	CMakeFiles/headers.dir/Register.cpp.obj	5bdcf1f85013dcc7
+62	1179	7526216006708755	CMakeFiles/headers.dir/Memory.cpp.obj	d0ca6496dc84d77f
+31	1263	7526216006405169	CMakeFiles/headers.dir/main.cpp.obj	64d693ed366e0890
+23	1445	7526216006321189	CMakeFiles/headers.dir/Machine.cpp.obj	1be41b8670a315b8
+1445	1600	7526216020537589	headers.exe	c6bb9b47674e3f2c
