@@ -1,21 +1,15 @@
 #ifndef REGISTER_H
 #define REGISTER_H
 
-#include <iostream>
-#include <vector>
-#include <iomanip>
-#include <string>
-#include <stdexcept>
-#include <limits>
 #include <array>
-#include <memory>
+#include <iostream>
+#include <stdexcept>
 #include <sstream>
-#include <fstream>
-#include <cstring>
+#include <iomanip>
 
 using namespace std;
 
-void Outofrange(const string& context, int index);
+void OutofrangeR(const string& context, int index);
 
 class Register {
 public:
@@ -25,6 +19,9 @@ public:
     void set(int index, float value);
     float get(int index) const;
     void display() const;
+
+private:
+    string toHex(int value) const; // Declare toHex as a private member function
 };
 
 #endif // REGISTER_H
