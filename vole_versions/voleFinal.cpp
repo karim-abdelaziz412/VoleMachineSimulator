@@ -12,6 +12,13 @@
 
 using namespace std;
 
+string toHex(int value) {
+    stringstream ss;
+    ss << uppercase << hex << setw(2) << setfill('0') << value;
+    return ss.str();
+}
+
+
 void Outofrange(const string& context, int index) {
     throw runtime_error(context + " out of range: " + to_string(index));
 }
@@ -121,10 +128,11 @@ public:
     void display() const {
         cout << "Registers: ";
         for (int i = 0; i < registerSize; ++i) {
-            cout << "R" << i << ": " << static_cast<int>(reg[i]) << " ";
+            cout << "R" << i << ": " << toHex(static_cast<int>(reg[i])) << " ";
         }
         cout << endl;
     }
+
 };
 
 
