@@ -16,6 +16,7 @@
 using namespace std;
 
 void Outofrange(const string& context, int index);
+string toHex(int value);
 
 class Memory {
 public:
@@ -32,4 +33,4 @@ public:
     float getFloat(int address) const;
 };
 
-#endif // MEMORY_H
+#endif

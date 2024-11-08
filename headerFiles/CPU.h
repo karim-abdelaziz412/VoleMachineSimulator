@@ -1,6 +1,8 @@
 #ifndef CPU_H
 #define CPU_H
 
+#include <iostream>
+#include <stdexcept>
 #include "Memory.h"
 #include "Register.h"
 #include "ALU.h"
@@ -22,4 +24,4 @@ public:
     void displayScreen() const;
 };
 
-#endif // CPU_H
+#endif

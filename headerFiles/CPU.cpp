@@ -1,6 +1,4 @@
 #include "CPU.h"
-#include <iostream>
-#include <stdexcept>
 
 CPU::CPU(Memory* mem) : memory(mem), instructionRegister(0) {}
 
@@ -68,7 +66,6 @@ void CPU::execute() {
 
 void CPU::displayState() const {
     reg.display();
-    memory->display();
     cout << "Program Counter: " << cu.getProgramCounter() << endl;
     cout << "Instruction Register: " << uppercase << hex << static_cast<int>(instructionRegister) << dec << endl;
 }

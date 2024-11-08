@@ -3,7 +3,8 @@
 
 class ALU {
 public:
+    int addInt(int a, int b);
     float addFloat(float a, float b);
 };
 
-#endif // ALU_H
+#endif

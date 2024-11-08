@@ -12,15 +12,14 @@
 
 using namespace std;
 
+void Outofrange(const string& context, int index) {
+    throw runtime_error(context + " out of range: " + to_string(index));
+}
+
 string toHex(int value) {
     stringstream ss;
     ss << uppercase << hex << setw(2) << setfill('0') << value;
     return ss.str();
-}
-
-
-void Outofrange(const string& context, int index) {
-    throw runtime_error(context + " out of range: " + to_string(index));
 }
 
 
@@ -51,7 +50,6 @@ public:
             }
         }
         programLoaded = true;
-
     }
 
     bool isProgramLoaded() const {
@@ -65,12 +63,12 @@ public:
         return mem[address];
     }
 
-
+    
     void display() const {
         cout << "Memory (in hex, 16x16 matrix):" << endl;
         for (int i = 0; i < memorySize; i += 16) {
             cout << "0x" << uppercase << hex << setw(2) << setfill('0') << i << ": ";
-            for (int j = 0; j < 16; ++j) {
+            for (int j = 0; j < 16 && (i + j) < memorySize; ++j) {
                 cout << setw(2) << setfill('0') << static_cast<int>(mem[i + j]) << " ";
             }
             cout << dec << endl;
@@ -81,7 +79,7 @@ public:
         cout << "Memory (16x16 matrix):" << endl;
         for (int i = 0; i < memorySize; i += 16) {
             cout << "0x" << uppercase << hex << setw(2) << setfill('0') << i << ": ";
-            for (int j = 0; j < 16; ++j) {
+            for (int j = 0; j < 16 && (i + j) < memorySize; ++j) {
                 cout << setw(2) << setfill('0') << static_cast<int>(mem[i + j]) << " ";
             }
             cout << dec << endl;
@@ -104,7 +102,6 @@ public:
         return value;
     }
 };
-
 
 class Register {
 public:
@@ -132,12 +129,13 @@ public:
         }
         cout << endl;
     }
-
 };
-
 
 class ALU {
 public:
+    int addInt(int a, int b) {
+        return a + b;
+    }
     float addFloat(float a, float b) {
         return a + b;
     }
@@ -181,7 +179,6 @@ public:
     }
 
     void execute() {
-
         if (!memory->isProgramLoaded()) {
             cout << "No program loaded. Halting execution." << endl;
             throw runtime_error("Execution halted due to lack of program.");
@@ -219,9 +216,19 @@ public:
                 reg.set(operand2, reg.get(operand1));
                 break;
             case 0x5:
-                reg.set(operand1, alu.addFloat(reg.get(operand1), reg.get(operand2)));
+
+            {
+                int val1 = static_cast<int>(reg.get(operand1));
+                int val2 = static_cast<int>(reg.get(operand2));
+
+                int result = alu.addInt(val1, val2);
+
+                reg.set(operand2, static_cast<float>(result));
+            }
                 break;
+
             case 0x6:
+
                 reg.set(operand1, alu.addFloat(reg.get(operand1), reg.get(operand2)));
                 break;
             case 0xB:
@@ -240,7 +247,6 @@ public:
 
     void displayState() const {
         reg.display();
-        memory->display();
         cout << "Program Counter: " << cu.getProgramCounter() << endl;
         cout << "Instruction Register: " << uppercase << hex << static_cast<int>(instructionRegister) << dec << endl;
     }
@@ -291,10 +297,10 @@ public:
             while (true) {
                 cpu->fetch();
                 cpu->execute();
-                cpu->displayScreen();
             }
         } catch (const runtime_error& e) {
             cpu->displayState();
+            memory.display();  // Display memory at the end of execution
             cout << "Program halted: " << e.what() << endl;
         }
     }
@@ -305,13 +311,13 @@ public:
             while (true) {
                 cpu->fetch();
                 cpu->execute();
-                cpu->displayScreen();
                 cpu->displayState();
                 cout << "Press Enter to continue to next step" << endl;
                 cin.get();
             }
         } catch (const runtime_error& e) {
             cpu->displayState();
+            memory.display();  // Display memory at the end of execution
             cout << "Program halted: " << e.what() << endl;
         }
     }

@@ -1,6 +1,7 @@
 #ifndef CU_H
 #define CU_H
 
+#include "Memory.h"
 #include <stdexcept>
 #include <string>
 
@@ -14,4 +15,4 @@ public:
     void jumpTo(int address);
 };
 
-#endif // CU_H
+#endif

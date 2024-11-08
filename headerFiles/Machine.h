@@ -19,7 +19,7 @@
 class Machine {
 private:
     Memory memory;
-    std::unique_ptr<CPU> cpu;
+    unique_ptr<CPU> cpu;
 
 public:
     Machine();
@@ -30,4 +30,4 @@ public:
     void menu();
 };
 
-#endif // MACHINE_H
+#endif

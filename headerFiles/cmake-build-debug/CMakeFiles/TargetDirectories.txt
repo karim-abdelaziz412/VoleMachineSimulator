@@ -1,3 +1,0 @@
-C:/Users/zezok/Desktop/headerFiles/cmake-build-debug/CMakeFiles/headerFiles.dir
-C:/Users/zezok/Desktop/headerFiles/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/zezok/Desktop/headerFiles/cmake-build-debug/CMakeFiles/rebuild_cache.dir

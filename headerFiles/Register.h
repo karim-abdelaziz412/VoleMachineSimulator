@@ -19,9 +19,6 @@ public:
     void set(int index, float value);
     float get(int index) const;
     void display() const;
-
-private:
-    string toHex(int value) const; // Declare toHex as a private member function
 };
 
-#endif // REGISTER_H
+#endif
