@@ -1,5 +1,5 @@
 #include "Register.h"
-
+#include "Memory.h"
 void Register::set(int index, float value) {
     if (index < 0 || index >= registerSize) {
         Outofrange("Register index", index);
